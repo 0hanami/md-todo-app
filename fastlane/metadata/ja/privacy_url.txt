@@ -1,1 +1,1 @@
-https://github.com/0hanami/md-todo-app/blob/main/PRIVACY_POLICY.md
+https://gist.github.com/0hanami/d404c40a9745dd9ef8e0b59a527a4882
