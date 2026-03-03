@@ -18,6 +18,7 @@ platform :ios do
       output_directory: "./build",
       output_name: "TodoApp.ipa",
       clean: true,
+      xcargs: "-allowProvisioningUpdates",
       export_options: {
         signingStyle: "automatic",
         teamID: "UT59P398NV"
@@ -43,7 +44,23 @@ platform :ios do
       skip_screenshots: false,
       force: true,
       overwrite_screenshots: true,
-      submit_for_review: false
+      submit_for_review: false,
+      skip_review_information: true
+    )
+  end
+
+  desc "Upload screenshots only"
+  lane :screenshots do
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_screenshots: false,
+      force: true,
+      overwrite_screenshots: true,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      precheck_include_in_app_purchases: false
     )
   end
 
