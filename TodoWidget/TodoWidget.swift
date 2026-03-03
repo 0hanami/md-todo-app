@@ -84,22 +84,28 @@ struct Provider: TimelineProvider {
     }
     
     private func loadTodosFromSharedContainer() -> [WidgetTodoItem] {
-        let appGroupIdentifier = "group.com.yourname.TodoApp.shared"
+        let appGroupIdentifier = "group.com.0hanami.mdtodo.shared"
         
         guard let sharedContainerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) else {
+            #if DEBUG
             print("⚠️ App Groupの共有コンテナにアクセスできませんでした")
+            #endif
             return getSampleTodos()
         }
-        
+
         let dataURL = sharedContainerURL.appendingPathComponent("shared_todo_data.json")
-        
+
         do {
             let data = try Data(contentsOf: dataURL)
             let widgetTodoData = try JSONDecoder().decode(WidgetTodoData.self, from: data)
+            #if DEBUG
             print("✅ Widget用データを正常に読み込みました: \(widgetTodoData.todos.count)件")
+            #endif
             return widgetTodoData.todos
         } catch {
+            #if DEBUG
             print("⚠️ Widget用データの読み込みに失敗しました: \(error)")
+            #endif
             return getSampleTodos()
         }
     }
