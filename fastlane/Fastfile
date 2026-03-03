@@ -1,0 +1,49 @@
+default_platform(:ios)
+
+platform :ios do
+  def api_key
+    app_store_connect_api_key(
+      key_id: "K729KNBG4D",
+      issuer_id: "1d43e621-362d-41a1-a1fb-57cc65cf1a23",
+      key_filepath: File.expand_path("~/.appstoreconnect/private_keys/AuthKey_K729KNBG4D.p8")
+    )
+  end
+
+  desc "Build for App Store"
+  lane :build do
+    build_app(
+      project: "TodoApp.xcodeproj",
+      scheme: "TodoApp",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "TodoApp.ipa",
+      clean: true,
+      export_options: {
+        signingStyle: "automatic",
+        teamID: "UT59P398NV"
+      }
+    )
+  end
+
+  desc "Upload to TestFlight"
+  lane :beta do
+    build
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Submit to App Store review"
+  lane :release do
+    build
+    deliver(
+      api_key: api_key,
+      submit_for_review: true,
+      automatic_release: false,
+      force: true,
+      skip_metadata: true,
+      skip_screenshots: true
+    )
+  end
+end
