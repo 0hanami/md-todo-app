@@ -34,6 +34,19 @@ platform :ios do
     )
   end
 
+  desc "Upload metadata and screenshots only"
+  lane :metadata do
+    deliver(
+      api_key: api_key,
+      skip_binary_upload: true,
+      skip_metadata: false,
+      skip_screenshots: false,
+      force: true,
+      overwrite_screenshots: true,
+      submit_for_review: false
+    )
+  end
+
   desc "Submit to App Store review"
   lane :release do
     build
@@ -42,8 +55,9 @@ platform :ios do
       submit_for_review: true,
       automatic_release: false,
       force: true,
-      skip_metadata: true,
-      skip_screenshots: true
+      skip_metadata: false,
+      skip_screenshots: false,
+      overwrite_screenshots: true
     )
   end
 end
