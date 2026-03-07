@@ -1,10 +1,10 @@
-# Privacy Policy - iCloud Markdown Todo
+# Privacy Policy - mdTodo
 
 Last updated: 2026-03-04
 
 ## Overview
 
-iCloud Markdown Todo ("the App") is a simple task management application. We take your privacy seriously.
+mdTodo ("the App") is a simple task management application. We take your privacy seriously.
 
 ## Data Collection
 
