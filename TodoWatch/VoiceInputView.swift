@@ -2,8 +2,9 @@
 //  VoiceInputView.swift
 //  TodoWatch
 //
-//  音声入力UI + 成功/エラーフィードバック
-//  TextFieldタップでwatchOS標準入力UI（音声/手書き/絵文字）が起動する
+//  Voice input UI with success/error feedback.
+//  Tapping the TextField launches the standard watchOS input UI
+//  (voice, scribble, emoji).
 //
 
 import SwiftUI
@@ -20,20 +21,17 @@ struct VoiceInputView: View {
     var body: some View {
         VStack(spacing: 12) {
             if !writer.isAvailable {
-                // iCloud未利用時の案内
                 iCloudUnavailableView
             } else if showSuccess {
-                // 成功フィードバック
                 successView
             } else {
-                // 通常の入力UI
                 inputView
             }
         }
         .animation(.easeInOut(duration: 0.3), value: showSuccess)
     }
 
-    // MARK: - 入力UI
+    // MARK: - Input UI
 
     private var inputView: some View {
         VStack(spacing: 12) {
@@ -41,7 +39,7 @@ struct VoiceInputView: View {
                 .font(.title3)
                 .foregroundColor(.blue)
 
-            TextField("タスクを入力", text: $inputText)
+            TextField("Add task", text: $inputText)
                 .textInputAutocapitalization(.sentences)
 
             if showError {
@@ -55,7 +53,7 @@ struct VoiceInputView: View {
                 if isProcessing {
                     ProgressView()
                 } else {
-                    Label("追加", systemImage: "plus.circle.fill")
+                    Label("Add", systemImage: "plus.circle.fill")
                 }
             }
             .disabled(inputText.isEmpty || isProcessing)
@@ -63,7 +61,7 @@ struct VoiceInputView: View {
         }
     }
 
-    // MARK: - 成功フィードバック
+    // MARK: - Success Feedback
 
     private var successView: some View {
         VStack(spacing: 8) {
@@ -71,12 +69,12 @@ struct VoiceInputView: View {
                 .font(.system(size: 44))
                 .foregroundColor(.green)
 
-            Text("追加しました")
+            Text("Added")
                 .font(.headline)
         }
     }
 
-    // MARK: - iCloud未利用
+    // MARK: - iCloud Unavailable
 
     private var iCloudUnavailableView: some View {
         VStack(spacing: 8) {
@@ -84,13 +82,13 @@ struct VoiceInputView: View {
                 .font(.title2)
                 .foregroundColor(.orange)
 
-            Text("iCloud Driveに\nサインインしてください")
+            Text("Please sign in\nto iCloud Drive")
                 .font(.caption)
                 .multilineTextAlignment(.center)
         }
     }
 
-    // MARK: - アクション
+    // MARK: - Actions
 
     private func addTodo() {
         let text = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -110,7 +108,7 @@ struct VoiceInputView: View {
                     WKInterfaceDevice.current().play(.success)
                 }
 
-                // 1.5秒後にリセット
+                // Reset after 1.5 seconds
                 try? await Task.sleep(nanoseconds: 1_500_000_000)
 
                 await MainActor.run {

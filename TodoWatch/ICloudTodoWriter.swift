@@ -2,8 +2,8 @@
 //  ICloudTodoWriter.swift
 //  TodoWatch
 //
-//  iCloud Drive上のtodo.mdにタスクを追記するクラス
-//  NSFileCoordinatorで安全に書き込む
+//  Writes tasks to todo.md on iCloud Drive.
+//  Uses NSFileCoordinator for safe concurrent access.
 //
 
 import Foundation
@@ -15,9 +15,9 @@ enum TodoWriteError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .iCloudNotAvailable:
-            return "iCloud Driveが利用できません"
+            return "iCloud Drive is not available"
         case .writeFailed(let reason):
-            return "書き込み失敗: \(reason)"
+            return "Write failed: \(reason)"
         }
     }
 }
@@ -25,33 +25,33 @@ enum TodoWriteError: LocalizedError {
 class ICloudTodoWriter {
     private let containerIdentifier = "iCloud.com.0hanami.mdtodo"
 
-    /// iCloud Documents ディレクトリのURL
+    /// URL for the iCloud Documents directory
     var iCloudDocumentsURL: URL? {
         FileManager.default.url(
             forUbiquityContainerIdentifier: containerIdentifier
         )?.appendingPathComponent("Documents")
     }
 
-    /// todo.md のURL
+    /// URL for todo.md
     var todoFileURL: URL? {
         iCloudDocumentsURL?.appendingPathComponent("todo.md")
     }
 
-    /// iCloudが利用可能かチェック
+    /// Check if iCloud is available
     var isAvailable: Bool {
         FileManager.default.ubiquityIdentityToken != nil
     }
 
-    /// タスクを追記
-    /// - ファイルが存在しない場合は新規作成
-    /// - 既存ファイルの末尾に `- [ ] テキスト` を追記
-    /// - NSFileCoordinator を使用してiCloud同期との競合を防ぐ
+    /// Append a task to todo.md
+    /// - Creates the file if it doesn't exist
+    /// - Appends `\n- [ ] text` to the end of the existing file
+    /// - Uses NSFileCoordinator to prevent conflicts with iCloud sync
     func appendTodo(_ text: String) async throws {
         guard let fileURL = todoFileURL else {
             throw TodoWriteError.iCloudNotAvailable
         }
 
-        // Documentsディレクトリがなければ作成
+        // Create Documents directory if needed
         if let docsURL = iCloudDocumentsURL,
            !FileManager.default.fileExists(atPath: docsURL.path) {
             try FileManager.default.createDirectory(
@@ -62,7 +62,7 @@ class ICloudTodoWriter {
 
         let newLine = "- [ ] \(text)\n"
 
-        // NSFileCoordinatorで安全に書き込み
+        // Write safely using NSFileCoordinator
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             let coordinator = NSFileCoordinator()
             var coordinatorError: NSError?
@@ -81,7 +81,7 @@ class ICloudTodoWriter {
                         }
                         handle.closeFile()
                     } else {
-                        // ファイルが存在しない場合は新規作成
+                        // File doesn't exist; create with header
                         let header = "# Todo\n\n\(newLine)"
                         try header.write(to: url, atomically: true, encoding: .utf8)
                     }

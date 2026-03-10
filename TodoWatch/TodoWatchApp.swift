@@ -3,7 +3,7 @@
 //  TodoWatch
 //
 //  mdTodo watchOS Companion App
-//  音声入力でタスクをiCloud Driveに追加する最小構成アプリ
+//  Minimal app for adding tasks to iCloud Drive via voice input.
 //
 
 import SwiftUI

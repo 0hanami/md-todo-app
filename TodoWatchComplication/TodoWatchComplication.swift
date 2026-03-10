@@ -2,8 +2,8 @@
 //  TodoWatchComplication.swift
 //  TodoWatchComplication
 //
-//  watchOS文字盤用Complication（Widget Extension）
-//  タップでTodoWatchアプリを起動する
+//  WidgetKit-based watch face complication.
+//  Taps open the TodoWatch app for quick task entry.
 //
 
 import WidgetKit
@@ -28,7 +28,7 @@ struct SimpleProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         let entry = SimpleEntry(date: Date())
-        // 静的表示のみのため更新不要
+        // Static display only; no periodic refresh needed
         let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
@@ -44,6 +44,7 @@ struct CircularComplicationView: View {
                 .font(.title2)
                 .foregroundColor(.green)
         }
+        .widgetURL(URL(string: "mdtodo://add"))
     }
 }
 
@@ -53,14 +54,16 @@ struct CornerComplicationView: View {
             .font(.title3)
             .foregroundColor(.green)
             .widgetLabel {
-                Text("タスク追加")
+                Text("Add Task")
             }
+            .widgetURL(URL(string: "mdtodo://add"))
     }
 }
 
 struct InlineComplicationView: View {
     var body: some View {
-        Label("タスク追加", systemImage: "plus.circle")
+        Label("Add Task", systemImage: "plus.circle")
+            .widgetURL(URL(string: "mdtodo://add"))
     }
 }
 
@@ -91,9 +94,10 @@ struct TodoWatchComplication: Widget {
             provider: SimpleProvider()
         ) { entry in
             TodoWatchComplicationEntryView(entry: entry)
+                .widgetURL(URL(string: "mdtodo://add"))
         }
-        .configurationDisplayName("タスク追加")
-        .description("タップしてタスクを音声入力")
+        .configurationDisplayName("Add Task")
+        .description("Tap to add a task via voice input")
         .supportedFamilies([
             .accessoryCircular,
             .accessoryCorner,

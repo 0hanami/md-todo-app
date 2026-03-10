@@ -12,6 +12,13 @@
 		P1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = P2 /* PrivacyInfo.xcprivacy */; };
 		W1 /* TodoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = W2 /* TodoWidget.swift */; };
 		W3 /* TodoWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = W4 /* TodoWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		TW01 /* TodoWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = TW02 /* TodoWatchApp.swift */; };
+		TW03 /* VoiceInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = TW04 /* VoiceInputView.swift */; };
+		TW05 /* ICloudTodoWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = TW06 /* ICloudTodoWriter.swift */; };
+		TW07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = TW08 /* Assets.xcassets */; };
+		TW31 /* TodoWatchComplication.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = TC09 /* TodoWatchComplication.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		TC01 /* TodoWatchComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = TC02 /* TodoWatchComplication.swift */; };
+		TC07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = TC08 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -21,6 +28,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = W9;
 			remoteInfo = TodoWidget;
+		};
+		TC20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = H1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = TC10;
+			remoteInfo = TodoWatchComplication;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -32,6 +46,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				W3 /* TodoWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TW41 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				TW31 /* TodoWatchComplication.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +74,17 @@
 		W4 /* TodoWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodoWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		W5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		WE1 /* TodoWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoWidget.entitlements; sourceTree = "<group>"; };
+		TW02 /* TodoWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWatchApp.swift; sourceTree = "<group>"; };
+		TW04 /* VoiceInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInputView.swift; sourceTree = "<group>"; };
+		TW06 /* ICloudTodoWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudTodoWriter.swift; sourceTree = "<group>"; };
+		TW08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		TW09 /* TodoWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		TW11 /* TodoWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoWatch.entitlements; sourceTree = "<group>"; };
+		TW12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		TC02 /* TodoWatchComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWatchComplication.swift; sourceTree = "<group>"; };
+		TC08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		TC09 /* TodoWatchComplication.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodoWatchComplication.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		TC11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +102,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TW50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TC50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -74,6 +124,8 @@
 			children = (
 				E2 /* TodoApp */,
 				E4 /* TodoWidget */,
+				E5 /* TodoWatch */,
+				E6 /* TodoWatchComplication */,
 				E3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +147,8 @@
 			children = (
 				C1 /* TodoApp.app */,
 				W4 /* TodoWidget.appex */,
+				TW09 /* TodoWatch.app */,
+				TC09 /* TodoWatchComplication.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +161,29 @@
 				WE1 /* TodoWidget.entitlements */,
 			);
 			path = TodoWidget;
+			sourceTree = "<group>";
+		};
+		E5 /* TodoWatch */ = {
+			isa = PBXGroup;
+			children = (
+				TW02 /* TodoWatchApp.swift */,
+				TW04 /* VoiceInputView.swift */,
+				TW06 /* ICloudTodoWriter.swift */,
+				TW08 /* Assets.xcassets */,
+				TW11 /* TodoWatch.entitlements */,
+				TW12 /* Info.plist */,
+			);
+			path = TodoWatch;
+			sourceTree = "<group>";
+		};
+		E6 /* TodoWatchComplication */ = {
+			isa = PBXGroup;
+			children = (
+				TC02 /* TodoWatchComplication.swift */,
+				TC08 /* Assets.xcassets */,
+				TC11 /* Info.plist */,
+			);
+			path = TodoWatchComplication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +204,9 @@
 				W8 /* PBXTargetDependency */,
 			);
 			name = TodoApp;
+			packageProductDependencies = (
+				PKG_DEP_TM /* TodoManager */,
+			);
 			productName = TodoApp;
 			productReference = C1 /* TodoApp.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +228,42 @@
 			productReference = W4 /* TodoWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		TW10 /* TodoWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TW60 /* Build configuration list for PBXNativeTarget "TodoWatch" */;
+			buildPhases = (
+				TW51 /* Sources */,
+				TW50 /* Frameworks */,
+				TW52 /* Resources */,
+				TW41 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				TC21 /* PBXTargetDependency */,
+			);
+			name = TodoWatch;
+			productName = TodoWatch;
+			productReference = TW09 /* TodoWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		TC10 /* TodoWatchComplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TC60 /* Build configuration list for PBXNativeTarget "TodoWatchComplication" */;
+			buildPhases = (
+				TC51 /* Sources */,
+				TC50 /* Frameworks */,
+				TC52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodoWatchComplication;
+			productName = TodoWatchComplication;
+			productReference = TC09 /* TodoWatchComplication.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,6 +280,12 @@
 					W9 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					TW10 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					TC10 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 				};
 			};
 			buildConfigurationList = H2 /* Build configuration list for PBXProject "TodoApp" */;
@@ -176,11 +298,16 @@
 			);
 			mainGroup = E1;
 			productRefGroup = E3 /* Products */;
+			packageReferences = (
+				PKG_REF_TM /* XCLocalSwiftPackageReference "packages/TodoManager" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F1 /* TodoApp */,
 				W9 /* TodoWidget */,
+				TW10 /* TodoWatch */,
+				TC10 /* TodoWatchComplication */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +326,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TW52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TW07 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TC52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TC07 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +364,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		TW51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TW01 /* TodoWatchApp.swift in Sources */,
+				TW03 /* VoiceInputView.swift in Sources */,
+				TW05 /* ICloudTodoWriter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		TC51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				TC01 /* TodoWatchComplication.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -228,6 +389,11 @@
 			isa = PBXTargetDependency;
 			target = W9 /* TodoWidget */;
 			targetProxy = W13 /* PBXContainerItemProxy */;
+		};
+		TC21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = TC10 /* TodoWatchComplication */;
+			targetProxy = TC20 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -487,6 +653,130 @@
 			};
 			name = Release;
 		};
+		TW61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TodoWatch/TodoWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UT59P398NV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TodoWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = mdTodo;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.0hanami.mdtodo;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0hanami.mdtodo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		TW62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TodoWatch/TodoWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UT59P398NV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TodoWatch/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = mdTodo;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.0hanami.mdtodo;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0hanami.mdtodo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		TC61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UT59P398NV;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TodoWatchComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoWatchComplication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0hanami.mdtodo.watchkitapp.complication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		TC62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UT59P398NV;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TodoWatchComplication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoWatchComplication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.0hanami.mdtodo.watchkitapp.complication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -517,7 +807,39 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		TW60 /* Build configuration list for PBXNativeTarget "TodoWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TW61 /* Debug */,
+				TW62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		TC60 /* Build configuration list for PBXNativeTarget "TodoWatchComplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TC61 /* Debug */,
+				TC62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		PKG_REF_TM /* XCLocalSwiftPackageReference "packages/TodoManager" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = packages/TodoManager;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		PKG_DEP_TM /* TodoManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TodoManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = H1 /* Project object */;
 }
