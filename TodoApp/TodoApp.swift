@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Combine
 import UniformTypeIdentifiers
 import TodoManager
 import CloudKitSync
@@ -198,6 +197,7 @@ struct SimpleTodoItemView: View {
                 }
             }
             .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel(todo.isCompleted ? "Mark \(todo.text) incomplete" : "Mark \(todo.text) complete")
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: todo.isCompleted)
 
             if isEditing {
@@ -226,6 +226,7 @@ struct SimpleTodoItemView: View {
                 .font(.system(size: 16))
                 .foregroundColor(.gray.opacity(0.6))
                 .padding(.leading, 8)
+                .accessibilityHidden(true)
         }
         .padding(.vertical, 4)
         .padding(.horizontal, 12)
@@ -295,6 +296,16 @@ struct ContentView: View {
         _todoManager = StateObject(wrappedValue: manager)
     }
 
+    // MARK: - Computed
+
+    private var completedAndHiddenTodos: [TodoItem] {
+        todoManager.todos.filter { $0.isCompleted && !recentlyCompletedTodos.contains($0.id) }
+    }
+
+    private var activeTodos: [TodoItem] {
+        todoManager.todos.filter { !$0.isCompleted || recentlyCompletedTodos.contains($0.id) }
+    }
+
     // MARK: - Todo List Section
 
     @ViewBuilder
@@ -324,7 +335,7 @@ struct ContentView: View {
         } else {
             VStack(spacing: 0) {
                 List {
-                    ForEach(todoManager.todos.filter { !$0.isCompleted || recentlyCompletedTodos.contains($0.id) }) { todo in
+                    ForEach(activeTodos) { todo in
                         SimpleTodoItemView(
                             todo: todo,
                             onToggle: { todoId in
@@ -348,7 +359,7 @@ struct ContentView: View {
                     }
                     .onDelete { indexSet in
                         withAnimation(.spring()) {
-                            let visibleTodos = todoManager.todos.filter { !$0.isCompleted || recentlyCompletedTodos.contains($0.id) }
+                            let visibleTodos = activeTodos
                             for index in indexSet {
                                 let todoId = visibleTodos[index].id
                                 recentlyCompletedTodos.remove(todoId)
@@ -362,7 +373,7 @@ struct ContentView: View {
                         }
                     }
 
-                    if !todoManager.todos.filter({ $0.isCompleted && !recentlyCompletedTodos.contains($0.id) }).isEmpty {
+                    if !completedAndHiddenTodos.isEmpty {
                         Section {
                             Button {
                                 withAnimation(.spring()) {
@@ -374,7 +385,7 @@ struct ContentView: View {
                                         .font(.system(size: 12))
                                         .foregroundColor(.secondary)
 
-                                    Text("Completed (\(todoManager.todos.filter({ $0.isCompleted && !recentlyCompletedTodos.contains($0.id) }).count))")
+                                    Text("Completed (\(completedAndHiddenTodos.count))")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
 
@@ -390,7 +401,7 @@ struct ContentView: View {
                     }
 
                     if showCompletedTodos {
-                        ForEach(todoManager.todos.filter { $0.isCompleted && !recentlyCompletedTodos.contains($0.id) }) { todo in
+                        ForEach(completedAndHiddenTodos) { todo in
                             SimpleTodoItemView(
                                 todo: todo,
                                 onToggle: { todoId in
@@ -410,7 +421,7 @@ struct ContentView: View {
                         }
                         .onDelete { indexSet in
                             withAnimation(.spring()) {
-                                let completedTodos = todoManager.todos.filter { $0.isCompleted && !recentlyCompletedTodos.contains($0.id) }
+                                let completedTodos = completedAndHiddenTodos
                                 for index in indexSet {
                                     let todoId = completedTodos[index].id
                                     recentlyCompletedTodos.remove(todoId)
@@ -552,6 +563,7 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
             }
+            .accessibilityLabel("Add new todo")
             .padding(.trailing, 24)
             .padding(.bottom, 34)
         }
@@ -623,7 +635,7 @@ struct ContentView: View {
     }
 
     private func finishEditingTodo(todoId: String) {
-        let kept = todoManager.finishEditing(id: todoId)
+        todoManager.finishEditing(id: todoId)
         withAnimation(.spring()) {
             editingTodoId = nil
         }

@@ -30,4 +30,33 @@ final class TodoStatisticsTests: XCTestCase {
         let stats = TodoStatistics(total: 4, completed: 3, pending: 1, completionPercentage: 75.0)
         XCTAssertEqual(stats.completionPercentageString, "75.0%")
     }
+
+    func testAllCompleted() {
+        let todos = [
+            TodoItem(text: "A", isCompleted: true, lineNumber: 0, originalLine: ""),
+            TodoItem(text: "B", isCompleted: true, lineNumber: 1, originalLine: ""),
+        ]
+        let stats = TodoStatistics.from(todos: todos)
+        XCTAssertEqual(stats.completionPercentage, 100.0)
+        XCTAssertEqual(stats.pending, 0)
+    }
+
+    func testNoneCompleted() {
+        let todos = [
+            TodoItem(text: "A", isCompleted: false, lineNumber: 0, originalLine: ""),
+            TodoItem(text: "B", isCompleted: false, lineNumber: 1, originalLine: ""),
+        ]
+        let stats = TodoStatistics.from(todos: todos)
+        XCTAssertEqual(stats.completionPercentage, 0.0)
+        XCTAssertEqual(stats.completed, 0)
+    }
+
+    func testSingleTodo() {
+        let todos = [
+            TodoItem(text: "Only", isCompleted: true, lineNumber: 0, originalLine: ""),
+        ]
+        let stats = TodoStatistics.from(todos: todos)
+        XCTAssertEqual(stats.total, 1)
+        XCTAssertEqual(stats.completionPercentage, 100.0)
+    }
 }

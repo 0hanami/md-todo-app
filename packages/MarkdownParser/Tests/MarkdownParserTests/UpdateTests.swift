@@ -68,4 +68,66 @@ final class UpdateTests: XCTestCase {
         XCTAssertTrue(updated.contains("# Header"))
         XCTAssertTrue(updated.contains("Some notes"))
     }
+
+    // MARK: - Edge Cases
+
+    func testUpdateWithOutOfRangeLineNumber() {
+        let content = "- [ ] Task"
+        let todo = TodoItem(text: "Task", isCompleted: true, lineNumber: 999, originalLine: "")
+        let updated = parser.updateTodoInContent(content, todo: todo)
+        XCTAssertEqual(updated, content, "Out-of-range line number should leave content unchanged")
+    }
+
+    func testApplyTodosToEmptyContent() {
+        let content = ""
+        let todos = [TodoItem(text: "New", isCompleted: false, lineNumber: -1, originalLine: "")]
+        let updated = parser.applyTodosToContent(content, todos: todos)
+        XCTAssertTrue(updated.contains("- [ ] New"))
+    }
+
+    func testGenerateContentAllPending() {
+        let todos = [
+            TodoItem(text: "A", isCompleted: false, lineNumber: 0, originalLine: ""),
+            TodoItem(text: "B", isCompleted: false, lineNumber: 1, originalLine: ""),
+        ]
+        let content = parser.generateContent(from: todos)
+        XCTAssertTrue(content.contains("## Pending Tasks"))
+        XCTAssertFalse(content.contains("## Completed Tasks"))
+    }
+
+    func testGenerateContentAllCompleted() {
+        let todos = [
+            TodoItem(text: "A", isCompleted: true, lineNumber: 0, originalLine: ""),
+            TodoItem(text: "B", isCompleted: true, lineNumber: 1, originalLine: ""),
+        ]
+        let content = parser.generateContent(from: todos)
+        XCTAssertFalse(content.contains("## Pending Tasks"))
+        XCTAssertTrue(content.contains("## Completed Tasks"))
+    }
+
+    func testGenerateContentEmpty() {
+        let content = parser.generateContent(from: [])
+        XCTAssertTrue(content.contains("# Todo List"))
+        XCTAssertFalse(content.contains("## Pending Tasks"))
+        XCTAssertFalse(content.contains("## Completed Tasks"))
+    }
+
+    func testIsCheckboxLine() {
+        XCTAssertTrue(parser.isCheckboxLine("- [ ] task"))
+        XCTAssertTrue(parser.isCheckboxLine("- [x] task"))
+        XCTAssertTrue(parser.isCheckboxLine("- [X] task"))
+        XCTAssertTrue(parser.isCheckboxLine("  - [ ] indented"))
+        XCTAssertFalse(parser.isCheckboxLine("- Regular item"))
+        XCTAssertFalse(parser.isCheckboxLine("# Header"))
+        XCTAssertFalse(parser.isCheckboxLine(""))
+    }
+
+    func testApplyTodosRemoveAll() {
+        let content = "# Header\n- [ ] Task1\n- [ ] Task2\nFooter"
+        let updated = parser.applyTodosToContent(content, todos: [])
+        XCTAssertTrue(updated.contains("# Header"))
+        XCTAssertTrue(updated.contains("Footer"))
+        XCTAssertFalse(updated.contains("Task1"))
+        XCTAssertFalse(updated.contains("Task2"))
+    }
 }
