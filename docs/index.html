@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mdTodo - Markdown Todo管理アプリ</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      background-color: #fafafa;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 40px 16px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    header p.tagline {
+      font-size: 18px;
+      color: #666;
+    }
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 40px 16px 60px;
+    }
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin: 6px 0;
+    }
+    .features li {
+      list-style: none;
+      padding-left: 4px;
+    }
+    .features li::before {
+      content: "- ";
+      color: #888;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    nav.page-links {
+      text-align: center;
+      margin-top: 16px;
+    }
+    nav.page-links a {
+      display: inline-block;
+      margin: 0 12px;
+      padding: 10px 20px;
+      background: #0066cc;
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    nav.page-links a:hover {
+      background: #0052a3;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 13px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>mdTodo</h1>
+    <p class="tagline">iCloud上のMarkdownファイルでTodoを管理するiOSアプリ</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>アプリ概要</h2>
+      <p>mdTodoは、iCloud Drive上のMarkdownファイルを直接編集してタスク管理を行うiPhoneアプリです。シンプルな操作でTodoの作成・完了・整理ができます。</p>
+      <p style="margin-top: 12px;">Obsidianなど他のMarkdownエディタと同じファイルを共有できるため、iPhoneでもMacでも同じTodoリストにアクセスできます。</p>
+    </section>
+
+    <section class="features">
+      <h2>主な機能</h2>
+      <ul>
+        <li>iCloud Drive上の <code>.md</code> ファイルを直接読み書き</li>
+        <li>Markdown標準のタスクリスト形式 (<code>- [ ]</code> / <code>- [x]</code>)</li>
+        <li>Obsidian互換 - 同じVaultのファイルをそのまま利用可能</li>
+        <li>ホーム画面ウィジェット対応（小・中・大）</li>
+        <li>Apple Watch コンプリケーション対応</li>
+        <li>アカウント登録不要・オフラインで動作</li>
+      </ul>
+    </section>
+
+    <nav class="page-links">
+      <a href="support.html">サポート・FAQ</a>
+      <a href="privacy-policy.html">プライバシーポリシー</a>
+    </nav>
+  </main>
+
+  <footer>
+    &copy; 2026 mdTodo
+  </footer>
+</body>
+</html>

@@ -5,75 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>プライバシーポリシー - mdTodo</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
       font-size: 16px;
       line-height: 1.8;
       color: #333;
-      background-color: #fff;
-      margin: 0;
+      background-color: #fafafa;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
       padding: 24px 16px;
     }
-    main {
-      max-width: 700px;
+    header .inner {
+      max-width: 740px;
       margin: 0 auto;
     }
-    h1 {
+    header h1 {
       font-size: 24px;
-      border-bottom: 2px solid #333;
-      padding-bottom: 8px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    header .breadcrumb {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    header .breadcrumb a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 32px 16px 60px;
+    }
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
       margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
     h2 {
       font-size: 18px;
-      margin-top: 32px;
-      margin-bottom: 12px;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    h2:first-child {
+      margin-top: 0;
     }
     p {
       margin: 8px 0;
     }
-    .app-name {
-      font-weight: bold;
-    }
-    .contact a {
+    a {
       color: #0066cc;
       text-decoration: none;
     }
-    .contact a:hover {
+    a:hover {
       text-decoration: underline;
     }
     .updated {
-      margin-top: 40px;
+      margin-top: 32px;
       font-size: 14px;
-      color: #666;
+      color: #888;
+    }
+    .nav-footer {
+      margin-top: 8px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+      font-size: 14px;
+    }
+    .nav-footer a {
+      margin-right: 16px;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 13px;
+      color: #999;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="inner">
+      <p class="breadcrumb"><a href="index.html">mdTodo</a> &gt; プライバシーポリシー</p>
+      <h1>プライバシーポリシー</h1>
+    </div>
+  </header>
+
   <main>
-    <h1>プライバシーポリシー</h1>
+    <section>
+      <h2>1. はじめに</h2>
+      <p>mdTodo（以下「本アプリ」）は、ユーザーのプライバシーを最優先に考えて設計されています。本ポリシーでは、本アプリにおけるデータの取り扱いについて説明します。</p>
 
-    <p><span class="app-name">mdTodo</span>アプリ（以下「本アプリ」）は、ユーザーのプライバシーを重視しています。</p>
+      <h2>2. 収集する情報</h2>
+      <p>本アプリは、個人情報を<strong>一切収集しません</strong>。アカウント登録、ログイン、メールアドレスの入力等は不要です。</p>
 
-    <h2>1. 収集する情報</h2>
-    <p>本アプリは個人情報を収集しません。すべてのデータ（Todoリスト、タスク情報など）はお使いのデバイス内にのみ保存され、外部サーバーに送信されることはありません。</p>
+      <h2>3. データの保存場所</h2>
+      <p>本アプリで作成・編集されるTodoデータは、以下の場所にのみ保存されます。</p>
+      <p><strong>iCloud Driveを有効にしている場合:</strong> データはiCloud Drive上のMarkdownファイルとして保存されます。iCloudはApple社が提供するサービスであり、データの管理はApple社のプライバシーポリシーに準じます。</p>
+      <p><strong>iCloud Driveを無効にしている場合:</strong> データはお使いのデバイスのローカルストレージにのみ保存されます。</p>
+      <p>ウィジェットとのデータ共有は、App Groupコンテナを通じてデバイス内で完結します。</p>
 
-    <h2>2. データの保存</h2>
-    <p>本アプリで作成されたデータはデバイスのローカルストレージ（Documentsディレクトリ）に保存されます。ウィジェットとのデータ共有はApp Groupコンテナを通じてデバイス内で行われます。アプリを削除するとデータも削除されます。</p>
+      <h2>4. 外部サーバーとの通信</h2>
+      <p>本アプリは、開発者が運営する外部サーバーとの通信を<strong>一切行いません</strong>。データがデバイスやiCloud Drive以外の場所に送信されることはありません。</p>
 
-    <h2>3. 第三者への提供</h2>
-    <p>本アプリは第三者にデータを提供しません。</p>
+      <h2>5. 第三者サービス</h2>
+      <p>本アプリは、以下のサービスを<strong>使用していません</strong>。</p>
+      <p>- 広告配信サービス<br>
+      - アクセス解析・トラッキングツール<br>
+      - クラッシュレポートサービス<br>
+      - その他の第三者データ収集サービス</p>
 
-    <h2>4. 分析ツール</h2>
-    <p>本アプリは分析ツールやトラッキングツールを使用しません。</p>
+      <h2>6. お子様のプライバシー</h2>
+      <p>本アプリは個人情報を収集しないため、お子様にも安心してご利用いただけます。</p>
 
-    <h2>5. お問い合わせ</h2>
-    <p class="contact">本ポリシーに関するお問い合わせは以下までご連絡ください。<br>メール: <a href="mailto:51270330+0hanami@users.noreply.github.com">51270330+0hanami@users.noreply.github.com</a></p>
+      <h2>7. ポリシーの変更</h2>
+      <p>本ポリシーは予告なく変更される場合があります。変更があった場合は本ページにて公開します。</p>
 
-    <h2>6. 変更</h2>
-    <p>本ポリシーは予告なく変更される場合があります。変更があった場合は本ページにて公開します。</p>
+      <h2>8. お問い合わせ</h2>
+      <p>本ポリシーに関するお問い合わせは以下までご連絡ください。</p>
+      <p>メール: <a href="mailto:51270330+0hanami@users.noreply.github.com">51270330+0hanami@users.noreply.github.com</a></p>
 
-    <p class="updated">最終更新日: 2026年3月4日</p>
+      <p class="updated">最終更新日: 2026年3月16日</p>
+    </section>
+
+    <div class="nav-footer">
+      <a href="index.html">トップページ</a>
+      <a href="support.html">サポート</a>
+    </div>
   </main>
+
+  <footer>
+    &copy; 2026 mdTodo
+  </footer>
 </body>
 </html>
